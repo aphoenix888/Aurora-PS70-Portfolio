@@ -104,3 +104,11 @@ code {
 #aboutme {
   padding: 20px;
 }
+
+figcaption {
+  color: #f7f7f7; /* Darker text color */
+  font-style: italic; /* Italicize the text */
+  padding: 5px; /* Add some internal spacing */
+  text-align: left;
+  font-size: 0.75em; /* Make the font size slightly smaller */
+}
