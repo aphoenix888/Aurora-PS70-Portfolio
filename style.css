@@ -2,7 +2,7 @@ body {
     font: 20px "Gill Sans", Verdana, sans-serif;
     line-height: 1.8;
     color: #fffdfd;
-    background-color: #640b0b;
+    background-image: url("Background1.png");
     padding-top: 0px !important;
   }
 
@@ -22,9 +22,19 @@ a {
   /*padding-bottom: 70px;*/
 }
 
+
+/* Font */
+.allura-regular {
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
 nav {
-  background-color: #e88585;
-  color: #EEE7E8;
+  background-color: rgba(129, 28, 28, 0.35);
+  
   padding: 50px 0px;
 }
 
@@ -35,9 +45,10 @@ nav {
 }
 
 .nav-title{
+  font-family: "Allura", cursive;
   margin-left: 15px;
   margin-right: 15px;
-  color: #000000;
+  color: #ffffff;
 }
 
 .nav-link {
@@ -58,10 +69,10 @@ nav {
 }
 
 #btn {
-  border: 3px outset #FFFFFF;
+  border: 3px outset #1ca435;
   border-radius: 40px;
   padding: 10px 30px;
-  background-color: #a3a3a3;
+  background-color: #c94242;
   color: #000000;
   transition: 0.3s;
 }
@@ -111,4 +122,136 @@ figcaption {
   padding: 5px; /* Add some internal spacing */
   text-align: left;
   font-size: 0.75em; /* Make the font size slightly smaller */
+}
+
+
+
+/* Column cards! 
+Hover effect: https://medium.com/@mr.zouraiz1580/card-hover-effects-html-css-010fb504f883
+General HTML www.w3schools.com
+https://www.w3schools.com/howto/howto_css_display_element_hover.asp
+*/
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 20px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color:rgba(129, 28, 28, 0.5);
+  opacity: 100%;
+  position: relative;
+  width: 275px;
+  height: 275px;
+  object-fit: cover;
+  border: 10px solid rgba(101, 31, 31, 0.5);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    opacity: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    background: rgba(52, 50, 50, 0.85);
+    padding: 15px;
+    border-top-right-radius: 15px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+.card:hover .card-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+/* Displaying and hiding*/
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: rgb(15, 9, 9);
+}
+
+
+
+/* Links */
+
+4
+a:link {
+  color: rgb(232, 249, 248);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(250, 236, 238);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(231, 250, 250);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: rgb(255, 255, 196);
+  background-color: transparent;
+  text-decoration: underline;
 }
