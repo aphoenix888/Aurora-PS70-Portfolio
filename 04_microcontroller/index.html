@@ -36,11 +36,11 @@
 
 <h3>Week 4: Microcontroller Programming</h3>
 
-This week I decided to work on the light aspect of the jellyfish lava lamp. I wanted to have different color and brightness settings. Taking inspiration from lab, I decided the easiest way to do this would be a potentiometer combined with Xiao controls. 
-
+This week I decided to work on the light aspect of the jellyfish lava lamp. I wanted to have different color and brightness settings. Taking inspiration from lab, I decided the easiest way to do this would be a potentiometer combined with Xiao controls. When I turn the potentiometer, the color will dim then switch colors so I can control both brightness and color. 
+<br><br>
 <figure>
-  <img src="./" alt="A circuit diagram" width=37% height=13%>
-  <figcaption> The overall kinetic sculpture, masking tape included.
+  <img src="./2026-04-04Week4CircuitDiagram.png" alt="A circuit diagram" width=37% height=13%>
+  <figcaption> The circuit diagram made on <a href="https://easyeda.com/" target="_blank" rel="noopener noreferrer"> EasyEDA</a>
   </figcaption>
 </figure>
 
@@ -48,7 +48,7 @@ This week I decided to work on the light aspect of the jellyfish lava lamp. I wa
 
 One issue that arose was one LED staying on when the other LED turned on, but this was easily fixed by adding commands for the other LED to turn off at the beginning of if statements. 
 
-Below is the code I originally wrote. It would be easy to add more LEDs by initiating more variables and adding more if loops.
+Below is the code I originally wrote. It would be easy to add more LEDs by initiating more variables and adding more if loops. I could also do color combos (ex. warm or cool) by adding multiple LEDs in series.
 
 <pre>
   <code>
@@ -85,7 +85,7 @@ Below is the code I originally wrote. It would be easy to add more LEDs by initi
           ledcWrite(ledPin1, ledValb);
         }
     if (ledVal > 125) {
-          ledValb = map(ledVal, 125, 255, 0, 255);
+          ledValb = map(ledVal, 125, 255, 255, 0);
           ledcWrite(ledPin1, 0);
           ledcWrite(ledPin2, ledValb);
         }
@@ -97,7 +97,23 @@ Below is the code I originally wrote. It would be easy to add more LEDs by initi
 Here is the result! <br>
 <iframe src="https://drive.google.com/file/d/1PLgV-fqCrWAQyur5bXMsZ6nYJY0-2-T9/preview" width="640" height="480"></iframe>
 
+<br><br>
 
+I also made a different version that set the brightest settings at the furthest the potentiometer knobs would go and the low setting in the middle by changing the mapping values to:
+<br>
+<br>
+  <code>
+ledValb = map(ledVal, 125, 255, 0, 255);
+  </code>
+<br>
+<br>
+And here is the result:
+<br>
+<iframe src="https://drive.google.com/file/d/1onYh_Q1Ev6scsUq0RtK6hB0IEAmJKXvb/preview" width="640" height="480"></iframe>
+
+<br><br>
+Hopefully I can incorporate this into a revised jellyfish kinetic sculpture at some point!
+<br><br>
 <h4>Future Plans</h4>
 <ul>
   1. Incorporate into jellyfish design
