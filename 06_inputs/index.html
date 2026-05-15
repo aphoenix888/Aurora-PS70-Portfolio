@@ -72,7 +72,11 @@ Here is the sensor and OLED screen in action!
 
 <br>
 
-<h4>Assignment 2: [Use + Calibrate Another Sensor]</h4>
+<h4>Assignment 2: Hall Effect Distance</h4>
+For assignment 2 I decided to us a Hall effect sensor as an input and a LED strip as an output. The imput from the Hall effect sensor ranged from 3300 to 0. The LED strip will go from red to blue as you get closer to the magnets. The code is at the bottom of this webpage.
+
+<iframe src="https://drive.google.com/file/d/1cH7NwXSVH1zcPkiBEYl7b05IwUTm_gSD/preview" width="640" height="480"></iframe>
+
 
 <br>
 <h4>CNC File</h4>
@@ -221,6 +225,98 @@ void loop() {
    
   </code>
 </pre>
+
+<h3>Hall Effect Sensor Code</h3>
+<pre>
+  <code>
+    
+#include <Adafruit_NeoPixel.h>
+
+
+const int HALL_SENSOR_PIN = D0;
+
+// Pin for LED strip
+#define PIN       D1 
+#define NUMPIXELS 5 
+#define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+#define APIWAIT 60000
+
+// setting PWM properties
+const int freq = 5000;
+const int resolution = 8;
+
+Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+int halleffect;
+int red;
+int green;
+int blue;
+
+void setup() {
+ 
+  pinMode(HALL_SENSOR_PIN, INPUT);
+
+  // Optional serial monitor
+  Serial.begin(115200);
+  // -------------------------------------------------------------------
+  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(10); // Set BRIGHTNESS low to reduce draw (max = 255)
+
+}
+
+void getLit(int hall, int &r, int &g, int &b) {
+
+ if (hall < 500) {   // blue
+    r = 0;   g = 0;   b = 255;
+
+
+
+  } else if (hall < 1500) {   // green
+    r = 0;   g = 255; b = 0;
+
+
+  } else if (hall < 3000) {   // yellow
+    r = 255; g = 255; b = 0;
+
+
+  } else {                  // red
+    r = 255; g = 0;   b = 0;
+  }
+}
+
+void loop() {
+ 
+
+  // --------------------------------------------------------------
+  // Control light strip
+  strip.clear(); // Set all pixel colors to 'off'
+
+  int sensorState = analogRead(HALL_SENSOR_PIN);
+
+  // The first NeoPixel in a strand is #0, second is 1, all the way up
+  // to the count of pixels minus one.
+  for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+
+    getLit(sensorState, red, green, blue);
+    strip.setPixelColor(i, strip.Color(red, green, blue));
+
+    // strip.Color() takes RGB values, from 0,0,0 up to 255,255,255
+    // Here we're using a moderately bright green color:
+
+    strip.show();   // Send the updated pixel colors to the hardware.
+
+    // delay(DELAYVAL); // Pause before next pass through loop
+  }
+    Serial.println(sensorState);
+
+}
+  </code>
+</pre>
+
+
+
+
 
 </div>
 </xmp>
